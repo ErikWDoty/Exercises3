@@ -78,8 +78,43 @@ for (j in 2:ncol(mat1)){
 mat1
 
 max(mat1) # optimal alignment score
-which(mat1 == max(mat1), arr.ind = TRUE) # postion of max value in matrix
+which(mat1 == max(mat1), arr.ind = TRUE)[1] # postion of max value in matrix
 
 
 
+F <-  matrix(data = 0, nrow = (length(seq_1) +1), ncol = (length(seq_2) + 1))
+colnames(F) = c(" ", seq_1)
+rownames(F) = c(" ", seq_2)
+F
 
+sw_align <- function(x,y){
+ 
+ 
+  
+  if (x == 1 | y ==1)
+  {return(0)}
+  
+  F[x,y] <<- max(
+    0,
+    sw_align(x-1,y) - d,
+    sw_align(x,y-1) - d,
+    sw_align(x-1, y-1) + s2[(x-1), (y-1)]
+  )
+    
+   
+}
+  
+
+## Problem B
+#recursive function, sw_align
+time_start = proc.time()
+sw_align(nrow(F),ncol(F))
+proc.time() - time_start
+  
+  
+  
+  
+  
+  
+  
+  
