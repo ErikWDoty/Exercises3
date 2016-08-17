@@ -55,3 +55,31 @@ rownames(mat1) = c(" ", seq_2)
 
 mat1
 
+##Problem D
+
+d= 1
+
+for (j in 2:ncol(mat1)){
+  for (i in 2:nrow(mat1)) {
+    
+    mat1[i,j] = 
+  max(
+    0,
+    mat1[(i-1),j] - d,
+    mat1[i,(j-1)] - d,
+    mat1[(i-1), (j-1)] + s2[(i-1), (j-1)]
+    
+  )  
+  }
+  
+  
+}
+
+mat1
+
+max(mat1) # optimal alignment score
+which(mat1 == max(mat1), arr.ind = TRUE) # postion of max value in matrix
+
+
+
+
